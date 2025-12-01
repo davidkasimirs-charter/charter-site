@@ -1,0 +1,11 @@
+CSSEC Addendum Kit v1.1.0 — Integrity Verification Record
+
+Bundle: CSSEC_AddendumKit_v1.1.0.zip
+
+SHA-256:  e9abe9e7b34e7f5e7ab1de30f61cd08089c6c2661259fbd730a72d2dd81fabd6
+BLAKE3:   6e4e2cdfd1c06c774976627a2c38f195f1f3e389e64d757e9d580032412da91d
+
+Verification Note:
+If either of these hash values does not match when recomputed for this ZIP file,
+the Addendum Kit has been altered or is not the official v1.1.0 release.
+

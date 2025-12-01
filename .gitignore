@@ -1,0 +1,49 @@
+# === CharterSiteRoot GitIgnore ===
+# Keep the repo clean. Ignore local clutter, backups, drafts, and zips.
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*~
+*.bak
+
+# Logs
+*.log
+
+# Archives / compressed files
+*.zip
+*.tar
+*.gz
+*.bz2
+*.7z
+
+# Backups or old versions
+*_old*
+*backup*
+*Backup*
+*.old
+
+# Temporary build artifacts
+.cache/
+dist/
+build/
+
+# Sensitive or internal-use folders (if you ever create them)
+private/
+drafts/
+notes/
+
+# ODT or source docs (PDF outputs are fine to keep)
+*.odt
+*.docx
+
+# Keep only site assets
+# Still ALLOW these:
+# *.html
+# *.css
+# *.js
+# *.png
+# *.jpg
+# *.svg

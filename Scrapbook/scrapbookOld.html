@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrapbook Viewer</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #111;
+        color: #ddd;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    h1 {
+        padding: 20px;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Dedication Panel as hero card with angel art */
+    .scrapbook-dedication {
+        max-width: 480px;
+        aspect-ratio: 3 / 4;           /* keeps a tall card like the art */
+        margin: 40px auto 40px auto;
+        padding: 36px 32px;
+        box-sizing: border-box;
+
+        background-image: url("PatMemorialAngel.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        border-radius: 20px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+        position: relative;
+        overflow: hidden;
+
+        /* text styling */
+        color: #0b4a66;                /* deep teal/blue for legibility */
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: center;
+
+        /* center content vertically & horizontally */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Darker overlay + soft center highlight for readability */
+    .scrapbook-dedication::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 50% 35%,
+                rgba(255,255,255,0.9) 0,
+                rgba(255,255,255,0.75) 40%,
+                rgba(255,255,255,0.4) 65%,
+                rgba(0,0,0,0.35) 100%);
+        pointer-events: none;
+    }
+
+    .scrapbook-dedication > * {
+        position: relative;            /* sits above the overlay */
+        z-index: 1;
+    }
+
+    .scrapbook-dedication h2 {
+        font-weight: 600;
+        margin-bottom: 16px;
+        font-size: 1.4rem;
+    }
+
+    .scrapbook-dedication .signed {
+        margin-top: 20px;
+        font-style: italic;
+    }
+
+    /* Hero card hover */
+    #hero-card {
+        transition: transform 0.25s ease;
+    }
+
+    #hero-card:hover {
+        transform: scale(1.02);
+    }
+
+    /* Gallery Grid */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        box-shadow: 0 0 10px #000;
+        background: #222;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 12px #333;
+    }
+
+    /* Lightbox */
+    #lightbox {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lightbox img {
+        max-height: 90vh;
+        max-width: 90vw;
+        border-radius: 8px;
+        box-shadow: 0 0 20px #000;
+    }
+
+    .lightbox-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        padding: 10px;
+    }
+
+    .lightbox-arrow.left { left: 20px; }
+    .lightbox-arrow.right { right: 20px; }
+</style>
+</head>
+
+<body>
+
+    <h1>Scrapbook Viewer</h1>
+
+    <div class="scrapbook-dedication" id="hero-card">
+        <h2>Created with Love</h2>
+
+        <p>Created with love, especially for my son.</p>
+
+        <p>
+            The most joyful day of my life was the day
+            the angels brought you to me.
+        </p>
+
+        <p>
+            I loved you the moment I laid eyes on you,
+            and I will love you always.
+        </p>
+
+        <p class="signed">— Mom</p>
+    </div>
+
+    <!-- IMAGE GRID -->
+    <div class="gallery">
+        <img src="IMG_3697.jpg" onerror="this.remove()">
+        <img src="IMG_3698.jpg" onerror="this.remove()">
+        <img src="IMG_3699.jpg" onerror="this.remove()">
+        <img src="IMG_3700.jpg" onerror="this.remove()">
+        <img src="IMG_3701.jpg" onerror="this.remove()">
+        <img src="IMG_3702.jpg" onerror="this.remove()">
+        <img src="IMG_3703.jpg" onerror="this.remove()">
+        <img src="IMG_3704.jpg" onerror="this.remove()">
+        <img src="IMG_3705.jpg" onerror="this.remove()">
+        <img src="IMG_3706.jpg" onerror="this.remove()">
+        <img src="IMG_3707.jpg" onerror="this.remove()">
+        <img src="IMG_3708.jpg" onerror="this.remove()">
+        <img src="IMG_3709.jpg" onerror="this.remove()">
+        <img src="IMG_3710.jpg" onerror="this.remove()">
+        <img src="IMG_3711.jpg" onerror="this.remove()">
+        <img src="IMG_3712.jpg" onerror="this.remove()">
+        <img src="IMG_3713.jpg" onerror="this.remove()">
+        <img src="IMG_3714.jpg" onerror="this.remove()">
+        <img src="IMG_3715.jpg" onerror="this.remove()">
+        <img src="IMG_3716.jpg" onerror="this.remove()">
+        <img src="IMG_3717.jpg" onerror="this.remove()">
+        <img src="IMG_3718.jpg" onerror="this.remove()">
+        <img src="IMG_3719.jpg" onerror="this.remove()">
+        <img src="IMG_3720.jpg" onerror="this.remove()">
+        <img src="IMG_3721.jpg" onerror="this.remove()">
+        <img src="IMG_3722.jpg" onerror="this.remove()">
+        <img src="IMG_3723.jpg" onerror="this.remove()">
+        <img src="IMG_3724.jpg" onerror="this.remove()">
+        <img src="IMG_3725.jpg" onerror="this.remove()">
+        <img src="IMG_3726.jpg" onerror="this.remove()">
+        <img src="IMG_3727.jpg" onerror="this.remove()">
+        <img src="IMG_3728.jpg" onerror="this.remove()">
+        <img src="IMG_3729.jpg" onerror="this.remove()">
+        <img src="IMG_3730.jpg" onerror="this.remove()">
+        <img src="IMG_3731.jpg" onerror="this.remove()">
+        <img src="IMG_3732.jpg" onerror="this.remove()">
+        <img src="IMG_3733.jpg" onerror="this.remove()">
+        <img src="IMG_3734.jpg" onerror="this.remove()">
+        <img src="IMG_3736.jpg" onerror="this.remove()">
+        <img src="IMG_3737.jpg" onerror="this.remove()">
+        <img src="IMG_3738.jpg" onerror="this.remove()">
+        <img src="IMG_3739.jpg" onerror="this.remove()">
+        <img src="IMG_3740.jpg" onerror="this.remove()">
+        <img src="IMG_3741.jpg" onerror="this.remove()">
+        <img src="IMG_3742.jpg" onerror="this.remove()">
+        <img src="IMG_3743.jpg" onerror="this.remove()">
+        <img src="IMG_3744.jpg" onerror="this.remove()">
+        <img src="IMG_3745.jpg" onerror="this.remove()">
+        <img src="IMG_3746.jpg" onerror="this.remove()">
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <span class="lightbox-arrow left" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="">
+        <span class="lightbox-arrow right" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        const images = Array.from(document.querySelectorAll(".gallery img"));
+        let currentIndex = 0;
+
+        images.forEach((img, index) => {
+            img.addEventListener("click", () => {
+                currentIndex = index;
+                openLightbox(img.src);
+            });
+        });
+
+        function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        function changeImage(direction) {
+            if (!images.length) return;
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            document.getElementById("lightbox-img").src = images[currentIndex].src;
+        }
+
+        document.getElementById("lightbox").addEventListener("click", (e) => {
+            if (e.target.id === "lightbox") closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            const lb = document.getElementById("lightbox");
+            if (lb.style.display !== "flex") return;
+            if (e.key === "ArrowRight") changeImage(1);
+            if (e.key === "ArrowLeft") changeImage(-1);
+            if (e.key === "Escape") closeLightbox();
+        });
+
+        // HERO CARD OPENS LIGHTBOX AT FIRST IMAGE
+        const hero = document.getElementById("hero-card");
+        if (hero && images.length) {
+            hero.style.cursor = "pointer";
+            hero.addEventListener("click", () => {
+                currentIndex = 0;
+                openLightbox(images[0].src);
+            });
+        }
+    </script>
+
+</body>
+</html>

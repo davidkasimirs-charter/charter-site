@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapbook Viewer – Pat's Pages</title>
+
+    <!-- Main site styles -->
+    <link rel="stylesheet" href="../Assets/style.css">
+
+    <style>
+        body.scrap-page {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(circle at top, #050712 0, #020308 55%, #000000 100%);
+            color: #f9f5ff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .scrap-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+
+        .scrap-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .scrap-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scrap-header p {
+            opacity: 0.85;
+            max-width: 640px;
+            margin: 0.25rem auto;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        .top-nav a {
+            text-decoration: none;
+        }
+
+   /* Pastel hero text card with Pat's kitten wash */
+.scrap-card {
+    max-width: 640px;
+    margin: 1.75rem auto 2.25rem;
+    padding: 2rem 2.5rem;
+    border-radius: 26px;
+
+    /* PatKittens.png lives in the same folder as scrapbook.html */
+    background: url("PatKittens.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(255, 255, 255, 0.06);
+    color: #26212f;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.scrap-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.14); /* subtle white haze */
+    border-radius: 26px;
+    z-index: 0;
+}
+
+.scrap-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+        .scrap-card h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .scrap-card p {
+            margin: 0.35rem 0;
+            line-height: 1.7;
+        }
+
+        .scrap-card footer {
+            margin-top: 1.5rem;
+            align-self: flex-end;
+            font-style: italic;
+        }
+
+        .scrap-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        /* Gallery grid (thumbnails) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            padding: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 0 10px #000;
+            background: #222;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 12px #333;
+        }
+
+        /* Lightbox overlay */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #000;
+        }
+
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            padding: 0 15px;
+        }
+
+        .lightbox-arrow.left {
+            left: 20px;
+        }
+
+        .lightbox-arrow.right {
+            right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .scrap-card {
+                padding: 1.5rem 1.3rem;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="scrap-page">
+
+    <header class="scrap-container">
+        <div class="scrap-header">
+            <nav class="top-nav">
+                <a href="../index.html">Home</a>
+                <a href="../Charter/grove_intro.html">Grove Intro</a>
+                <a href="../Charter/CharterCoreV13.html">Core Charter</a>
+                <a href="../Guides/guides.html">Steward Guides</a>
+                <a href="../Appendices/appendices.html">Appendices</a>
+            </nav>
+
+            <h1>Scrapbook Viewer – Pat's Pages</h1>
+            <p>
+                Created with love, especially for my son. <br>
+                The mosty joyful day of my life, was the day the angels brought you to me.
+                I loved you from the moment I laid eyes on you, and I will love you always.
+                ~ Mom
+            </p>
+        </div>
+    </header>
+
+    <main class="scrap-container">
+
+        <!-- HERO TEXT CARD (clickable to open slideshow) -->
+        <section class="scrap-card" id="hero-card">
+            <h2>Created with Love</h2>
+            <p>Created with love, especially for my son.</p>
+            <p>The most joyful day of my life was the day the angels brought you to me.</p>
+            <p>I loved you the moment I laid eyes on you, and I will love you always.</p>
+            <footer>— Mom</footer>
+        </section>
+
+        <!-- THUMBNAIL GALLERY (same files as before) -->
+        <div class="gallery">
+            <img src="IMG_3697.jpg" onerror="this.remove()">
+            <img src="IMG_3698.jpg" onerror="this.remove()">
+            <img src="IMG_3699.jpg" onerror="this.remove()">
+            <img src="IMG_3700.jpg" onerror="this.remove()">
+            <img src="IMG_3701.jpg" onerror="this.remove()">
+            <img src="IMG_3702.jpg" onerror="this.remove()">
+            <img src="IMG_3703.jpg" onerror="this.remove()">
+            <img src="IMG_3704.jpg" onerror="this.remove()">
+            <img src="IMG_3705.jpg" onerror="this.remove()">
+            <img src="IMG_3706.jpg" onerror="this.remove()">
+            <img src="IMG_3707.jpg" onerror="this.remove()">
+            <img src="IMG_3708.jpg" onerror="this.remove()">
+            <img src="IMG_3709.jpg" onerror="this.remove()">
+            <img src="IMG_3710.jpg" onerror="this.remove()">
+            <img src="IMG_3711.jpg" onerror="this.remove()">
+            <img src="IMG_3712.jpg" onerror="this.remove()">
+            <img src="IMG_3713.jpg" onerror="this.remove()">
+            <img src="IMG_3714.jpg" onerror="this.remove()">
+            <img src="IMG_3715.jpg" onerror="this.remove()">
+            <img src="IMG_3716.jpg" onerror="this.remove()">
+            <img src="IMG_3717.jpg" onerror="this.remove()">
+            <img src="IMG_3718.jpg" onerror="this.remove()">
+            <img src="IMG_3719.jpg" onerror="this.remove()">
+            <img src="IMG_3720.jpg" onerror="this.remove()">
+            <img src="IMG_3721.jpg" onerror="this.remove()">
+            <img src="IMG_3722.jpg" onerror="this.remove()">
+            <img src="IMG_3723.jpg" onerror="this.remove()">
+            <img src="IMG_3724.jpg" onerror="this.remove()">
+            <img src="IMG_3725.jpg" onerror="this.remove()">
+            <img src="IMG_3726.jpg" onerror="this.remove()">
+            <img src="IMG_3727.jpg" onerror="this.remove()">
+            <img src="IMG_3728.jpg" onerror="this.remove()">
+            <img src="IMG_3729.jpg" onerror="this.remove()">
+            <img src="IMG_3730.jpg" onerror="this.remove()">
+            <img src="IMG_3731.jpg" onerror="this.remove()">
+            <img src="IMG_3732.jpg" onerror="this.remove()">
+            <img src="IMG_3733.jpg" onerror="this.remove()">
+            <img src="IMG_3734.jpg" onerror="this.remove()">
+            <img src="IMG_3736.jpg" onerror="this.remove()">
+            <img src="IMG_3737.jpg" onerror="this.remove()">
+            <img src="IMG_3738.jpg" onerror="this.remove()">
+            <img src="IMG_3739.jpg" onerror="this.remove()">
+            <img src="IMG_3740.jpg" onerror="this.remove()">
+            <img src="IMG_3741.jpg" onerror="this.remove()">
+            <img src="IMG_3742.jpg" onerror="this.remove()">
+            <img src="IMG_3743.jpg" onerror="this.remove()">
+            <img src="IMG_3744.jpg" onerror="this.remove()">
+            <img src="IMG_3745.jpg" onerror="this.remove()">
+            <img src="IMG_3746.jpg" onerror="this.remove()">
+            <img src="PatMemorialCard.png"
+     alt="In Memory of Pat Kasimirs"
+     onerror="this.remove()">
+
+        </div>
+
+        <p class="scrap-note">
+            Artwork and original pages are archived safely. This view focuses on Pat's words first,
+            while the gallery below lets you step through the full pages at your own pace.
+        </p>
+
+        <!-- LIGHTBOX OVERLAY -->
+        <div id="lightbox">
+            <span class="lightbox-arrow left" onclick="changeImage(-1)">&#10094;</span>
+            <img id="lightbox-img" src="">
+            <span class="lightbox-arrow right" onclick="changeImage(1)">&#10095;</span>
+        </div>
+
+    </main>
+
+    <script>
+        const images = Array.from(document.querySelectorAll(".gallery img"));
+        let currentIndex = 0;
+
+        images.forEach((img, index) => {
+            img.addEventListener("click", () => {
+                currentIndex = index;
+                openLightbox(img.src);
+            });
+        });
+
+        function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        function changeImage(direction) {
+            if (!images.length) return;
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            document.getElementById("lightbox-img").src = images[currentIndex].src;
+        }
+
+        document.getElementById("lightbox").addEventListener("click", (e) => {
+            if (e.target.id === "lightbox") closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            const lb = document.getElementById("lightbox");
+            if (lb.style.display !== "flex") return;
+            if (e.key === "ArrowRight") changeImage(1);
+            if (e.key === "ArrowLeft") changeImage(-1);
+            if (e.key === "Escape") closeLightbox();
+        });
+
+        // HERO CARD OPENS LIGHTBOX AT FIRST IMAGE
+        const hero = document.getElementById("hero-card");
+        if (hero && images.length) {
+            hero.style.cursor = "pointer";
+            hero.addEventListener("click", () => {
+                currentIndex = 0;
+                openLightbox(images[0].src);
+            });
+        }
+    </script>
+
+</body>
+</html>

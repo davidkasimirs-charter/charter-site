@@ -1,0 +1,525 @@
+/* ----------------------------------------------------------
+   GLOBAL RESET & BASE
+---------------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #111413; /* deep Grove black-green */
+    color: #e7e9e5;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+
+/* ----------------------------------------------------------
+   SITE HEADER & TOP NAV
+---------------------------------------------------------- */
+
+.site-header {
+    padding: 1.5rem 0 0.25rem 0;
+    border-bottom: 1px solid #2c322e;
+    margin-bottom: 1rem;
+}
+
+.site-title {
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: #d3e7c2; /* soft Grove green */
+    text-shadow: 0 0 8px rgba(185, 255, 160, 0.12);
+}
+
+.top-nav {
+    margin-top: 0.75rem;
+}
+
+.top-nav a {
+    margin-right: 1.25rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+    transition: 0.2s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+    color: #fef3c7;
+    border-bottom: 2px solid #fbbf24;
+    padding-bottom: 0.15rem;
+}
+
+/* ----------------------------------------------------------
+   PAGE LAYOUT
+---------------------------------------------------------- */
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+}
+
+/* ----------------------------------------------------------
+   CARDS / PANELS
+---------------------------------------------------------- */
+
+.card {
+    background: #1b1f1c;
+    border: 1px solid #2c322e;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease, border 0.2s ease;
+}
+
+.card:hover {
+    background: #202522;
+    border-color: #3c463f;
+}
+
+.card h2,
+.card h3 {
+    color: #d5e9c7;
+    margin-bottom: 0.75rem;
+}
+
+/* ----------------------------------------------------------
+   BUTTONS
+---------------------------------------------------------- */
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    background: #2a312e;
+    border-radius: 8px;
+    color: #e5e9e6;
+    text-decoration: none;
+    border: 1px solid #39433d;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background: #39433d;
+    border-color: #4b5650;
+}
+
+/* ----------------------------------------------------------
+   GROVE INTRO / "STAYING HUMAN"
+---------------------------------------------------------- */
+
+.grove-intro {
+    background: #161a17;
+    border: 1px solid #273029;
+    padding: 2rem;
+    border-radius: 16px;
+    margin-top: 1.75rem;
+    box-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
+}
+
+.grove-intro h1 {
+    color: #d9f0c7;
+    font-size: 1.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.grove-intro p {
+    margin-bottom: 1.15rem;
+    color: #dae4d7;
+}
+
+.grove-intro a {
+    color: #c7f39a;
+    text-decoration: none;
+}
+
+.grove-intro a:hover {
+    color: #e8ffcd;
+}
+
+/* Footer-style Grove note inside grove_intro.html */
+.grove-intro .note {
+    background: #2d332e;
+    color: #f4f4f4;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #c9e59f;
+    border-radius: 8px;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+/* ----------------------------------------------------------
+   MEMORIAL / PAT'S PAGES
+---------------------------------------------------------- */
+
+/* Card container */
+.memorial-card {
+    background: #1a1d1b;
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 2rem 0;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.35);
+    border: 1px solid #2c322e;
+}
+
+/* Background Angel inside the card */
+.memorial-angel {
+    width: 100%;
+    display: block;
+    opacity: 0.85;
+    filter: brightness(1.12);
+}
+
+/* Soft overlay for text, clean alpha-box look */
+.memorial-inner {
+    background: rgba(18, 22, 19, 0.34); /* soft dark translucent overlay */
+    backdrop-filter: blur(2px);
+    padding: 1.75rem;
+    margin-top: -4rem;
+    border-radius: 0 0 18px 18px;
+}
+
+/* The dedication text */
+.memorial-text {
+    color: #f1f5ef;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* ----------------------------------------------------------
+   LINKS
+---------------------------------------------------------- */
+
+a {
+    color: #cbeec9;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #f3ffe8;
+}
+
+/* ----------------------------------------------------------
+   FOOTER
+---------------------------------------------------------- */
+
+footer {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #818c86;
+    font-size: 0.85rem;
+}
+/* === Pat Memorial card fixes ===================================== */
+
+.memorial-card {
+    position: relative;
+    overflow: hidden;
+    padding: 0;                 /* let the image sit flush on the card */
+    border-radius: 22px;
+}
+
+/* Angel image: smaller, cropped, not Goliath */
+.memorial-card .memorial-angel {
+    display: block;
+    width: 100%;
+    max-height: 260px;          /* adjust up/down if you want taller/shorter */
+    object-fit: cover;          /* crop instead of stretching */
+    filter: brightness(1.08);
+}
+
+/* Text block under the image */
+.memorial-card h3,
+.memorial-card .memorial-text,
+.memorial-card p:last-of-type {
+    padding: 0 2rem;
+}
+
+.memorial-card h3 {
+    margin-top: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.memorial-card .memorial-text {
+    margin: 0.3rem 0;
+    line-height: 1.5;
+}
+
+/* “View Her Pages” button row */
+.memorial-card p:last-of-type {
+    margin-top: 1.3rem;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+/* === Buttons (primary/secondary) ================================= */
+
+.button-primary,
+.button-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.1s ease,
+        box-shadow 0.18s ease;
+}
+
+/* Bright orange CTA */
+.button-primary {
+    background: #f97316;
+    color: #05070b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+.button-primary:hover {
+    background: #fb923c;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.7);
+}
+
+/* Outlined secondary button */
+.button-secondary {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(249, 250, 251, 0.28);
+}
+
+.button-secondary:hover {
+    background: rgba(249, 250, 251, 0.05);
+}
+
+/* Center CTAs in the top hero */
+.hero p:last-of-type {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.hero p:last-of-type a {
+    margin: 0 0.6rem;
+}
+
+/* Center CTAs in the 1–6 cards */
+.card-grid .card p:last-of-type {
+    text-align: center;
+    margin-top: 1.3rem;
+}
+/* ==============================
+   ACTION BUTTON — STYLE B
+   Gold Fill + Mint Outline
+   ============================== */
+
+.action-btn,
+button,
+.btn,
+a.button {
+    background: #FFB347;              /* Charter gold */
+    color: #111;                       /* deep text */
+    border: 2px solid #4FFFBA;         /* mint outline */
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.12s ease;
+}
+
+/* Pressed effect */
+.action-btn:active,
+button:active,
+.btn:active,
+a.button:active {
+    transform: translateY(1px) scale(0.985);
+}
+
+/* Hover — swap colors + mint halo */
+.action-btn:hover,
+button:hover,
+.btn:hover,
+a.button:hover {
+    background: #4FFFBA;               /* mint fill */
+    color: #061013;                    /* deep near-black text */
+    border-color: #FFB347;             /* gold outline now */
+    box-shadow: 0 0 14px rgba(79,255,186,0.7); /* mint aura */
+}
+/* ==============================
+   ACTION BUTTON — STYLE B
+   Gold Fill + Mint Outline
+   ============================== */
+
+.btn,
+.btn-style-b,
+a.btn,
+a.btn-style-b {
+    background: #FFB347;              /* Charter gold */
+    color: #111;                       /* deep text */
+    border: 2px solid #4FFFBA;         /* mint outline */
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.12s ease;
+}
+
+.btn:active,
+.btn-style-b:active,
+a.btn:active,
+a.btn-style-b:active {
+    transform: translateY(1px) scale(0.985);
+}
+
+.btn:hover,
+.btn-style-b:hover,
+a.btn:hover,
+a.btn-style-b:hover {
+    background: #4FFFBA;               /* mint fill */
+    color: #061013;                    /* deep near-black text */
+    border-color: #FFB347;             /* gold outline now */
+    box-shadow: 0 0 14px rgba(79,255,186,0.7); /* mint aura */
+}
+/* Fix Grove text alignment */
+.grove-intro,
+.grove-intro p,
+.grove-intro li,
+.grove-intro h2,
+.grove-intro h3 {
+    text-align: left !important;
+}
+/* === GROVE INTRO FIXES === */
+
+.content, .grove-intro {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 3rem;
+}
+
+/* Restore paragraph flow for Charter prose */
+.grove-intro p {
+    margin: 0.9rem 0 1.2rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* Heading rhythm */
+.grove-intro h2 {
+    margin: 2.2rem 0 1.1rem;
+    font-size: 1.45rem;
+}
+
+.grove-intro h3 {
+    margin: 1.6rem 0 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* Bullet spacing */
+.grove-intro li {
+    margin-bottom: 0.5rem;
+    line-height: 1.55;
+}
+
+/* Ordered list spacing */
+.grove-intro ol li {
+    margin-bottom: 0.7rem;
+}
+
+/* Restore stanza-style line breaks */
+.grove-intro br {
+    line-height: 1.2rem;
+}
+
+/* Optional: treat the big “You build it to…” list as poetic stanza */
+.grove-intro section p strong + br {
+    margin-top: 0.5rem;
+}
+
+.grove-intro section p {
+    white-space: normal;
+}
+
+.grove-intro .stanza {
+    white-space: pre-line;
+    margin: 1.3rem 0;
+    line-height: 1.55;
+}
+
+/* Note block formatting */
+.grove-intro .note {
+    background: rgba(79,255,186,0.06);
+    border: 1px solid rgba(79,255,186,0.3);
+    padding: 1rem 1.1rem;
+    border-radius: 0.6rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+/* === Grove Intro Desktop Centering Fix === */
+
+/* Wraps the intro content similarly to .page-main */
+.grove-intro {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.4rem 4rem;
+}
+
+/* Gives breathing room under the Grove header/nav */
+.site-header + .grove-welcome,
+.site-header + .content,
+.site-header + .grove-intro,
+.top-nav + .grove-intro {
+    margin-top: 2rem;
+}
+
+/* Make sure the nav/header doesn’t smash the first H1/H2 */
+.grove-intro h1,
+.grove-intro h2 {
+    padding-top: 0.5rem;
+}
+
+
+/* === Grove welcome band alignment === */
+
+.grove-welcome {
+    max-width: 900px;
+    margin: 1.8rem auto 2.2rem;   /* centers & adds space */
+    padding: 0 1.4rem;
+}
+
+.grove-welcome p {
+    margin: 0.5rem 0 0.8rem;
+    line-height: 1.55;
+    opacity: 0.95;
+}

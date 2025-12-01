@@ -1,0 +1,543 @@
+/* =============================
+   RESET & BASE
+============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.page,
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #061013 0, #020608 50%, #010203 100%);
+  color: #f5f5f5;
+}
+
+/* Links */
+
+a {
+  color: #cbeec9;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+a:hover {
+  color: #f3ffe8;
+}
+
+/* =============================
+   HEADER & NAV
+============================= */
+
+.site-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Brand (used on index) */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-mark {
+  font-size: 1.3rem;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-title {
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/* Main nav (index) */
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.main-nav a {
+  opacity: 0.9;
+}
+
+.main-nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Top nav (Grove intro) */
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.top-nav a {
+  color: #9ca3af;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  color: #fef3c7;
+  border-bottom: 2px solid #fbbf24;
+  padding-bottom: 0.1rem;
+}
+
+.grove-header-text h1 {
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+}
+
+.grove-header-text .subtitle {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* =============================
+   PAGE WRAPPER
+============================= */
+
+.page-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+/* =============================
+   HERO (index)
+============================= */
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 2.3vw + 1.2rem, 2.6rem);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 0.98rem;
+  max-width: 36rem;
+  opacity: 0.85;
+}
+
+.hero-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* Side card */
+
+.hero-card {
+  border-radius: 1rem;
+  padding: 1.25rem 1.4rem;
+  background: rgba(4, 15, 18, 0.96);
+  border: 1px solid rgba(79, 255, 186, 0.4);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.hero-card-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.hero-card-body {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.hero-card-list {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  opacity: 0.9;
+}
+
+/* Hero secondary link */
+
+.link-secondary {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.link-secondary:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* =============================
+   SECTIONS & CARDS
+============================= */
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.section-light {
+  background: radial-gradient(circle at top, #061013 0, #020608 65%);
+  border-radius: 1.3rem;
+  padding: 1.75rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  margin: 0 0 1.2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.info-card {
+  padding: 1rem 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(3, 10, 12, 0.95);
+  font-size: 0.9rem;
+}
+
+.info-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+/* Callout row */
+
+.callout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 179, 71, 0.4);
+  background: rgba(9, 10, 3, 0.96);
+}
+
+.callout-text {
+  flex: 2 1 260px;
+}
+
+.callout-text h2 {
+  margin: 0 0 0.4rem;
+}
+
+.callout-text p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+.callout-actions {
+  flex: 1 1 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+
+/* =============================
+   BUTTONS — GOLD + MINT
+============================= */
+
+.btn,
+.btn-style-b,
+a.btn,
+a.btn-style-b {
+  background: #FFB347;              /* Charter gold */
+  color: #111;                      /* deep text */
+  border: 2px solid #4FFFBA;        /* mint outline */
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.12s ease;
+}
+
+.btn:active,
+.btn-style-b:active,
+a.btn:active,
+a.btn-style-b:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.btn:hover,
+.btn-style-b:hover,
+a.btn:hover,
+a.btn-style-b:hover {
+  background: #4FFFBA;
+  color: #061013;
+  border-color: #FFB347;
+  box-shadow: 0 0 14px rgba(79,255,186,0.7);
+}
+
+/* =============================
+   GROVE INTRO PAGE
+============================= */
+
+.grove-intro {
+  max-width: 900px;
+  margin: 2rem auto 3.5rem;
+  padding: 2rem 1.4rem 3.5rem;
+  background: #161a17;
+  border: 1px solid #273029;
+  border-radius: 16px;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.35);
+}
+
+.grove-intro p {
+  margin: 0.9rem 0 1.2rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.grove-intro h2 {
+  margin: 2.2rem 0 1.1rem;
+  font-size: 1.45rem;
+}
+
+.grove-intro h3 {
+  margin: 1.6rem 0 0.8rem;
+  font-size: 1.2rem;
+}
+
+.grove-intro li {
+  margin-bottom: 0.5rem;
+  line-height: 1.55;
+}
+
+.grove-intro ol li {
+  margin-bottom: 0.7rem;
+}
+
+.grove-intro br {
+  line-height: 1.2rem;
+}
+
+.grove-intro .note {
+  background: rgba(79,255,186,0.06);
+  border: 1px solid rgba(79,255,186,0.3);
+  padding: 1rem 1.1rem;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* Force left alignment for Grove prose */
+.grove-intro,
+.grove-intro p,
+.grove-intro li,
+.grove-intro h2,
+.grove-intro h3 {
+  text-align: left;
+}
+
+/* =============================
+   FOOTER
+============================= */
+
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.9rem 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.site-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.site-footer a {
+  opacity: 0.8;
+}
+
+.site-footer a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+
+@media (max-width: 800px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-card {
+    order: -1;
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .main-nav {
+    justify-content: flex-end;
+  }
+
+  .site-header-inner {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .callout-actions {
+    justify-content: flex-start;
+  }
+}
+.grove-intro-block {
+    max-width: 900px;
+    margin: 3rem auto 4rem;
+    padding: 0 1.75rem 3rem;
+    line-height: 1.7;
+}
+
+.grove-intro-block h2,
+.grove-intro-block h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+}
+
+.grove-intro-block p {
+    margin: 0.75rem 0;
+}
+
+.grove-intro-block ul {
+    margin: 0.4rem 0 1.25rem 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.grove-intro-block .note {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: rgba(37, 196, 122, 0.12);
+    font-size: 0.95rem;
+}
+
+.grove-intro-block .read-more {
+    margin-top: 2rem;
+    font-weight: 500;
+}
+.grove-welcome,
+.grove-stand {
+    max-width: 900px;
+    margin: 2.5rem auto 0;
+    padding: 0 1.5rem;
+    line-height: 1.7;
+}
+
+.grove-welcome p:first-child {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.grove-stand h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+.grove-stand p {
+    margin: 0.65rem 0;
+}
+.notice-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #fcbf49;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 6px;
+}
+.notice-box a {
+  color: #f9d371;
+}
+.charter-text {
+  white-space: pre-wrap;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+

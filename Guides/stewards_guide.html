@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steward’s Guide – Oracle</title>
+  <link rel="stylesheet" href="../Assets/style.css" />
+
+  <style>
+    /* Page-local styling to match your site theme */
+    .oracle-container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 30px;
+      background: #0d1117;
+      border-radius: 12px;
+      border: 1px solid #1f6feb;
+    }
+
+    .oracle-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #f0f6fc;
+    }
+
+    .oracle-subtitle {
+      margin-bottom: 30px;
+      color: #c9d1d9;
+    }
+
+    #oracle-input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      background: #161b22;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    #oracle-button {
+      margin-top: 15px;
+      background: #f9d74b;
+      color: #000;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #oracle-output {
+      margin-top: 30px;
+      padding: 20px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #f0f6fc;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body class="page">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <nav class="top-nav">
+        <a href="../index.html">Home</a>
+        <a href="../Charter/CharterCoreV13.html">Read the Charter</a>
+        <a href="./guides.html">Guides</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="oracle-container">
+        <h1 class="oracle-title">The Steward’s Oracle</h1>
+        <p class="oracle-subtitle">
+          Ask anything. Ethical dilemmas, edge cases, conflict questions, 
+          “what about…” tests — the Oracle responds using Charter logic only.
+        </p>
+
+        <textarea id="oracle-input" rows="4" placeholder="Ask your question here…"></textarea>
+        <button id="oracle-button">Ask the Oracle</button>
+
+        <div id="oracle-output">Your answer will appear here.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Oracle logic lives in this external file -->
+  <script src="oracle.js"></script>
+</body>
+</html>

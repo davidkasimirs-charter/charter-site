@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapbook Viewer – Pat's Pages</title>
+
+    <!-- Use your main site styles -->
+    <link rel="stylesheet" href="../Assets/style.css">
+
+    <!-- Local pastel card styling so this page looks good even if global CSS changes -->
+    <style>
+        body.scrap-page {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(circle at top, #050712 0, #020308 55%, #000000 100%);
+            color: #f9f5ff;
+        }
+
+        .scrap-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+
+        .scrap-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .scrap-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scrap-header p {
+            opacity: 0.85;
+            max-width: 640px;
+            margin: 0.25rem auto;
+        }
+
+        .scrap-card {
+            max-width: 640px;
+            margin: 1.75rem auto;
+            padding: 2rem 2.5rem;
+            border-radius: 26px;
+            background: radial-gradient(circle at top,
+                        #ffeef7 0%,
+                        #f7f5ff 40%,
+                        #f2fbff 70%,
+                        #e9f4ff 100%);
+            box-shadow:
+                0 22px 48px rgba(0, 0, 0, 0.55),
+                0 0 40px rgba(255, 255, 255, 0.06);
+            color: #26212f;
+        }
+
+        .scrap-card h2,
+        .scrap-card h3 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .scrap-card p {
+            margin: 0.35rem 0;
+            line-height: 1.7;
+        }
+
+        .scrap-card footer {
+            margin-top: 1.5rem;
+            text-align: right;
+            font-style: italic;
+        }
+
+        .scrap-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        /* simple nav */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .top-nav a {
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .scrap-card {
+                padding: 1.5rem 1.3rem;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="scrap-page">
+
+<header class="scrap-container">
+    <div class="scrap-header">
+        <nav class="top-nav">
+            <a href="../index.html">Home</a>
+            <a href="../Charter/grove_intro.html">Grove Intro</a>
+            <a href="../Charter/CharterCoreV13.html">Core Charter</a>
+            <a href="../Guides/guides.html">Steward Guides</a>
+            <a href="../Appendices/appendices.html">Appendices</a>
+        </nav>
+
+        <h1>Scrapbook Viewer – Pat's Pages</h1>
+        <p>
+            These pages preserve Pat's words and blessings in simple form.
+            The original artwork is safely stored; for now we honor the text
+            on a soft pastel background.
+        </p>
+    </div>
+</header>
+
+<main class="scrap-container">
+
+    <!-- CARD 1 – example populated with “Created with Love” -->
+    <section class="scrap-card">
+        <h2>Created with Love</h2>
+        <p>Created with love, especially for my son.</p>
+        <p>The most joyful day of my life was the day the angels brought you to me.</p>
+        <p>I loved you the moment I laid eyes on you, and I will love you always.</p>
+
+        <footer>— Mom</footer>
+    </section>
+
+    <!--
+      CARD 2, 3, 4…:
+      Duplicate this <section> block for each of Pat’s pages and paste in the text.
+      You don’t have to worry about images right now; they’ll live in the same folder
+      and we can wire them back in later if you want a “text + thumbnail” layout.
+    -->
+
+    <!-- Example empty template you can copy/paste:
+
+    <section class="scrap-card">
+        <h3>Title of the Page</h3>
+        <p>First line of the text…</p>
+        <p>Next line…</p>
+        <p>Etc…</p>
+        <footer>— Mom</footer>
+    </section>
+
+    -->
+
+    <p class="scrap-note">
+        Artwork and original pages are archived safely.
+        This view focuses on Pat's words first, with room to grow
+        into a richer gallery later.
+    </p>
+
+</main>
+
+</body>
+</html>
