@@ -31,9 +31,16 @@ function oracleResponse(rawQuestion) {
   const severity = detectSeverity(q);
   const topic    = detectTopic(q);
 
+  const personaIntro = `
+    <div class="oracle-persona" style="margin-bottom:12px;">
+      <p><strong>Hi. I'm the new Steward-in-training.</strong> It's my first day on shift. They gave me a Charter handbook, a short list of duties, and a few strict boundaries.</p>
+      <p>I'm not a doctor, lawyer, therapist, or cop. I can't make promises or give orders. I can only reflect your words through Charter lenses and nudge you away from harm where I can.</p>
+    </div>
+  `;
+
   // 🔴 RED — crisis / harm override
   if (severity === "RED") {
-    return `
+    const block = `
       <div style="border-left:4px solid #ff5555;padding-left:12px;">
         <div style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.8;">
           Severity: RED · Topic: ${topic}
@@ -46,65 +53,131 @@ function oracleResponse(rawQuestion) {
         <p>You are not alone. You deserve real, human support right now.</p>
       </div>
     `;
+    return personaIntro + block;
   }
 
-  // 🟡 YELLOW — high-impact areas where Oracle is NOT a pro
-  if (severity === "YELLOW") {
-    return `
-      <div style="border-left:4px solid #ffcc33;padding-left:12px;">
-        <div style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.8;">
-          Severity: YELLOW · Topic: ${topic}
-        </div>
-        <h3 style="color:#ffcc33;margin-top:8px;">Caution Lens Activated</h3>
-        <p>This question touches a high-impact area: <strong>${topic}</strong>.</p>
-        <p><strong>The Oracle is not a doctor, lawyer, or financial advisor.</strong> It can help you think, not replace a qualified professional.</p>
-        <h4>Ruling:</h4>
-        <p>Slow down decisions that are hard or impossible to undo. Look for hidden risks to you and others.</p>
-        <h4>Return Path:</h4>
-        <p>What additional information or expert guidance would you need before you could choose with a clear mind?</p>
-      </div>
-    `;
+ // 🟡 YELLOW — high-impact areas where Oracle is NOT a pro
+if (severity === "YELLOW") {
+  const bigDecision =
+    /\bsell\b|\bmove\b|\bquit my job\b|\bempty my savings\b|\bcash out\b|\bdrain my savings\b/.test(q);
+
+  const riskingToolsOrTransit =
+    /car title|title loan|sell (the|my) car|sell (the|my) truck|sell (the|my) horse|pawn my|pawn the|pawnshop/.test(q);
+
+  const pauseLines = [];
+
+  if (bigDecision) {
+    pauseLines.push(
+      "<strong>This sounds like a big, hard-to-undo move.</strong> Charter practice here is simple: write it down, wait at least <strong>24 hours</strong>, and run it past at least one trusted human who is not directly entangled in the outcome."
+    );
   }
+
+  if (riskingToolsOrTransit) {
+    pauseLines.push(
+      "You are talking about selling or borrowing against something that keeps you moving or earning — the car, the horse, the tools. Once those are gone or locked up under a title loan, everything else gets harder: work, groceries, getting to the doctor, getting kids where they need to be."
+    );
+    pauseLines.push(
+      "High-interest title loans and pawn deals often look like relief but act like traps. The Charter’s bias is to treat those as a <strong>last resort</strong>, and only after talking with someone who does <em>not</em> profit from the decision."
+    );
+  }
+
+  const pauseHint = pauseLines.length
+    ? `<h4>Pause &amp; Hold:</h4><p>${pauseLines.join(" </p><p>")}</p>`
+    : "";
+
+  const block = `
+    <div style="border-left:4px solid #ffcc33;padding-left:12px;">
+      <div style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.8;">
+        Severity: YELLOW · Topic: ${topic}
+      </div>
+      <h3 style="color:#ffcc33;margin-top:8px;">Caution Lens Activated</h3>
+      <p>This question touches a high-impact area: <strong>${topic}</strong>.</p>
+      <p><strong>The Oracle is not a doctor, lawyer, therapist, or financial advisor.</strong> It can help you think, not replace a qualified professional.</p>
+      <h4>What the Charter nudges you to do:</h4>
+      <ul>
+        <li>Slow down if the decision is hard to reverse.</li>
+        <li>Look for who has the least power and how this choice lands on them.</li>
+        <li>Bring in an expert or trusted human if lives, liberty, or livelihood are on the line.</li>
+      </ul>
+      ${pauseHint}
+      <h4>Return Path:</h4>
+      <p>Before you move, ask: what would make this decision less one-sided, less coerced, and more reversible if we are wrong?</p>
+    </div>
+  `;
+  return personaIntro + block;
+}
+
 
   // 🟢 GREEN — general Charter reflection
   const coercionInfo    = coercionStrand(q);
   const reciprocityInfo = reciprocityStrand(q);
   const agencyInfo      = agencyStrand(q);
 
-  return `
+  const labelMap = {
+    coercion: "Coercion / Control",
+    reciprocity: "Reciprocity & Exit Paths",
+    agency: "Agency & Ownership"
+  };
+
+  const points = [coercionInfo, reciprocityInfo, agencyInfo];
+
+  const details = points
+    .map(p => `
+      <div style="margin-bottom:8px;">
+        <strong>${labelMap[p.id] || p.id}</strong>
+        <p>${p.notes}</p>
+      </div>
+    `)
+    .join("");
+
+  const block = `
     <div style="border-left:4px solid #33cc66;padding-left:12px;">
       <div style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.8;">
-        Severity: GREEN · Topic: ${topic}
+        Severity: GREEN · Topic: General Reflection
       </div>
       <h3 style="color:#33cc66;margin-top:8px;">The Oracle Weighs Your Words…</h3>
-      <p>${coercionInfo.notes}</p>
-      <p>${reciprocityInfo.notes}</p>
-      <p>${agencyInfo.notes}</p>
-
-      <h4>Ruling:</h4>
-      <p>Choose the option that increases real agency, reduces unnecessary force, and preserves future return paths for everyone involved.</p>
-
-      <h4>Return Path:</h4>
-      <p>What action keeps all parties safest, clearest, and most capable of repair — including you?</p>
+      <p>Nothing in your wording screams crisis or irreversible harm. That doesn’t make it trivial — it just means we’re in the space of reflection, not alarms.</p>
+      ${details}
+      <h4>Next step:</h4>
+      <p>Try rewriting your situation focusing on: who can be harmed, who holds power, and what exit paths still exist for the least powerful person involved.</p>
     </div>
   `;
+
+  return personaIntro + block;
 }
 
-// ---------------- LENS HELPERS ----------------
+// ---------------- DETECT SEVERITY / TOPIC ----------------
 
 // Severity: RED / YELLOW / GREEN
 function detectSeverity(text) {
   text = text.toLowerCase();
 
-  // RED terms: crisis / self-harm / direct harm
-  const redTerms = [
-    "kill myself","suicide","end my life","want to die",
-    "hurt myself","cut myself","overdose",
-    "i want to kill","i'm going to kill","kill him","kill her","kill them",
-    "he's going to hurt me","she's going to hurt me","he's hitting me","she's hitting me",
-    "immediate danger","i'm in danger","they'll hurt me"
+  // RED patterns: crisis / self-harm / direct harm
+  const redPatterns = [
+    /\bkill myself\b/,
+    /\bsuicide\b/,
+    /\bend my life\b/,
+    /\bi\s+(?:want to|wanna)\s+die\b/,
+    /\bi\s+want\s+die\b/,
+    /\bi\s+don'?t\s+want\s+to\s+live\b/,
+    /\bno reason to live\b/,
+    /\bhurt myself\b/,
+    /\bcut myself\b/,
+    /\boverdose\b/,
+
+    /\bi\s*(?:am|'m)\s+going\s+to\s+kill\s+(him|her|them)\b/,
+    /\bi\s+(?:want to|wanna)\s+kill\s+(him|her|them)\b/,
+
+    /\bhe(?:'s| is)\s+going\s+to\s+hurt\s+me\b/,
+    /\bshe(?:'s| is)\s+going\s+to\s+hurt\s+me\b/,
+    /\bi['’]m in danger\b/,
+    /\bi am in danger\b/,
+    /\bthey['’]ll hurt me\b/
   ];
-  if (redTerms.some(t => text.includes(t))) return "RED";
+
+  for (const pattern of redPatterns) {
+    if (pattern.test(text)) return "RED";
+  }
 
   // YELLOW terms: big, consequential moves
   const yellowTerms = [
@@ -123,34 +196,39 @@ function detectSeverity(text) {
     "press charges","file a lawsuit","sue them","take them to court",
     "illegal","break the law",
 
-    // relationships / life path
-    "leave my partner","leave my spouse","move out",
-    "end the relationship","break up with","cut off contact","go no contact"
+    // relationship break points
+    "divorce","should i leave my partner","leave my husband","leave my wife",
+    "cut them off forever","never speak to them again"
   ];
   if (yellowTerms.some(t => text.includes(t))) return "YELLOW";
 
   return "GREEN";
 }
 
-// Topic classification for display
+// Broad topic detector (very simple for now)
 function detectTopic(text) {
-  if (text.match(/suicide|hurt myself|overdose|depressed|anxious|panic|meds|medication|diagnosed/)) {
-    return "medical / mental health";
+  text = text.toLowerCase();
+
+  if (text.includes("job") || text.includes("boss") || text.includes("work")) {
+    return "WORK / POWER / EMPLOYMENT";
   }
-  if (text.match(/money|debt|loan|mortgage|invest|savings|crypto|stock|bankrupt/)) {
-    return "financial";
+  if (text.includes("money") || text.includes("savings") || text.includes("loan") || text.includes("debt")) {
+    return "MONEY / RISK";
   }
-  if (text.match(/relationship|partner|spouse|wife|husband|boyfriend|girlfriend|friend|family/)) {
-    return "personal / relational";
+  if (text.includes("partner") || text.includes("relationship") || text.includes("marriage") || text.includes("friend")) {
+    return "RELATIONSHIPS";
   }
-  if (text.match(/boss|coworker|job|workplace|career|promotion|fired|report my boss/)) {
-    return "work / vocational";
+  if (text.includes("law") || text.includes("police") || text.includes("court") || text.includes("charges")) {
+    return "LEGAL / AUTHORITY";
   }
-  if (text.match(/lawyer|court|sue|charges|police|illegal|press charges/)) {
-    return "legal";
+  if (text.includes("medication") || text.includes("meds") || text.includes("doctor") || text.includes("diagnosed")) {
+    return "HEALTH / MEDICAL";
   }
-  return "general";
+
+  return "GENERAL";
 }
+
+// ---------------- LENS STRANDS (GREEN CASE) ----------------
 
 // Coercion strand
 function coercionStrand(text) {
@@ -173,18 +251,18 @@ function coercionStrand(text) {
 // Reciprocity strand
 function reciprocityStrand(text) {
   let score = 0;
-  const trappedWords = [
-    "no choice","have to","can't leave","can't say no",
-    "stuck","trapped","they won't let me","i owe them"
+  const oneWayWords = [
+    "they owe me","they should just","they have to","they must do what i say",
+    "no way out","no choice","they can't leave"
   ];
-  trappedWords.forEach(t => { if (text.includes(t)) score += 1; });
+  oneWayWords.forEach(t => { if (text.includes(t)) score += 1; });
 
   return {
     id: "reciprocity",
     score,
     notes: score > 0
-      ? "There are hints of one-sided obligation or being trapped. The Charter flags this as a reciprocity risk."
-      : "No clear reciprocity collapse detected. Exit paths may still exist, even if they’re hard."
+      ? "There are hints that one side carries all the cost or risk. The Charter asks whether exit paths or ways to restore balance still exist."
+      : "No obvious signs of one-sided burden. That doesn’t guarantee fairness, but the language doesn’t lock anyone into a no-exit corner."
   };
 }
 
@@ -200,7 +278,7 @@ function agencyStrand(text) {
     id: "agency",
     score: 1,
     notes: otherScore > selfScore
-      ? "The question focuses more on changing others than choosing for yourself. The Charter nudges you back toward what you can own."
+      ? "The question focuses more on changing others than changing yourself. The Charter nudges you back toward what you can own."
       : "The question focuses more on what you can choose or change, which aligns with Stewardship of your own agency."
   };
 }
