@@ -541,3 +541,39 @@ a.btn-style-b:hover {
   font-size: 1rem;
 }
 
+/* ===== Charter document layout ===== */
+
+.doc{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 18px 64px;
+}
+
+.charter-raw{
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 16px;
+  background: rgba(255,255,255,.03);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 86ch;
+  margin: 0 auto;
+}
+
+/* Optional utility links (if you add them later) */
+.doc-tools{
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 12px 0 22px;
+  opacity: .9;
+}
+
+.doc-tools a{
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.doc-tools a:hover{
+  border-bottom-color: rgba(255,255,255,.6);
+}
